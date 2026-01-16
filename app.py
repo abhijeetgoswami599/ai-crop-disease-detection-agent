@@ -254,14 +254,15 @@ if __name__ == '__main__':
     # This block is for local development only, It will NOT run when Gunicorn imports app.py on Render.
     print("Starting Flask server for local development...")
 
-    # Initialize Firebase and load resources
-    if not initialize_firebase():
-        print("CRITICAL ERROR: Firebase initialization failed during app startup.")
-        exit(1)
-
+    # Load resources first (required)
     if not load_resources():
         print("CRITICAL ERROR: Model and class indices loading failed during app startup.")
         exit(1)
+    
+    # Initialize Firebase (optional for local development)
+    firebase_initialized = initialize_firebase()
+    if not firebase_initialized:
+        print("WARNING: Firebase not initialized. Running with limited functionality.")
         
     app.run(debug=True, port=5000)
 
