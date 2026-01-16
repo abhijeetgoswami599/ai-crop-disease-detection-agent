@@ -5,6 +5,31 @@ body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
     color: #333;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dbeafe 100%);
+    min-height: 100vh;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Modern custom scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #22c55e, #16a34a);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #16a34a, #15803d);
 }
 
 /* Custom loader spinner */
@@ -16,6 +41,25 @@ body {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+/* Enhanced animations */
+@keyframes float-up {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes glow-bounce {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(34, 197, 94, 0.5); }
+    50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(34, 197, 94, 0.8); }
+}
+
+.float-animation {
+    animation: float-up 3s ease-in-out infinite;
+}
+
+.glow-bounce {
+    animation: glow-bounce 2s ease-in-out infinite;
 }
 
 /* Markdown styling for the report content on Home page */
@@ -88,6 +132,33 @@ nav {
     z-index: 10; /*Ensure navbar is on top */
 }
 
+/* Enhanced navbar effects */
+nav {
+    position: sticky;
+    top: 0;
+    animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Underline animation for nav links */
+nav a {
+    position: relative;
+}
+
+nav .group:hover {
+    text-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+}
+
 /* User Guide Specific Styles */
 /* These classes are now directly in HTML, removed @apply */
 /* .card-header { ... } */
@@ -155,6 +226,68 @@ nav {
     text-align: center;
 }
 
+/* Sample Image Card Styling - Apply modern styling */
+.sample-image-card {
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.sample-image-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.sample-image-card:hover {
+    box-shadow: 0 15px 30px -3px rgba(34, 197, 94, 0.2);
+    background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+    transform: scale(1.05);
+    border-color: #22c55e;
+}
+
+.sample-image-card:hover::before {
+    left: 100%;
+}
+
+.sample-image-card img {
+    width: 100%;
+    height: 7rem;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin-bottom: 0.25rem;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.sample-image-card:hover img {
+    border-color: #22c55e;
+    box-shadow: 0 4px 8px rgba(34, 197, 94, 0.2);
+}
+
+.sample-image-card p {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #374151;
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+.sample-image-card:hover p {
+    color: #15803d;
+}
+
 .tool-card:hover {
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* hover:shadow-lg */
 }
@@ -164,4 +297,125 @@ nav {
     border-radius: 9999px; /* rounded-full */
     padding: 0.75rem; /* p-3 */
     margin-bottom: 1rem; /* mb-4 */
+}
+
+/* Footer enhancements */
+footer {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+footer a {
+    position: relative;
+    text-decoration: none;
+}
+
+footer a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: currentColor;
+    transition: width 0.3s ease;
+}
+
+footer a:hover::after {
+    width: 100%;
+}
+
+/* Decorative elements */
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+    color: #1f2937; /* gray-900 */
+    font-weight: 700; /* font-bold */
+    margin-top: 1.5rem; /* mt-6 */
+    margin-bottom: 0.75rem; /* mb-3 */
+    animation: float-up 3s ease-in-out infinite;
+}
+
+/* Button animations */
+button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* Smooth card transitions */
+.history-card, .tool-card {
+    transition: all 0.3s ease;
+}
+
+/* Form input focus effects */
+input:focus, select:focus, textarea:focus {
+    border-color: #22c55e;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+}
+
+/* Responsive design enhancements */
+@media (max-width: 768px) {
+    nav {
+        padding: 1rem;
+    }
+    
+    .sample-image-card {
+        padding: 0.4rem;
+    }
+    
+    footer {
+        padding: 1.5rem;
+    }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* Print styles */
+@media print {
+    nav, footer {
+        display: none;
+    }
+    
+    body {
+        background: white;
+    }
+}
+
+/* Main container enhancements */
+.bg-white.bg-opacity-15 {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Success state animations */
+@keyframes success-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+    50% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+}
+
+.success-state {
+    animation: success-pulse 2s infinite;
+}
+
+/* Error state styling */
+.error-state {
+    border-color: #dc2626;
+    background-color: #fee2e2;
 }
